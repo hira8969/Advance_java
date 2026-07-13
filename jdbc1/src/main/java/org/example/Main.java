@@ -2,23 +2,39 @@ package org.example;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
     public static void main(String[] args) {
 
-        try{
+        String url = "jdbc:mysql://localhost:3306/student2";
+        String username = "root";
+        String password = "Hira2006@";
+
+        try {
+            // Load Driver
             Class.forName("com.mysql.cj.jdbc.Driver");
-            String url= "jdbc:mysql://localhost:3306/jdbc1";
-            String username="root";
-            String pass= "Hira2006@";
-            Connection con=DriverManager.getConnection(url,username,pass);
-            System.out.println(con);
-        }catch (Exception e)
-        {
-            System.out.println(e);
+
+            // Create Connection
+            Connection con = DriverManager.getConnection(url, username, password);
+
+            System.out.println("Database Connected Successfully!");
+
+            // Insert Query
+            String query = "INSERT INTO student_data(s_id, s_name, domain) VALUES (?, ?, ?)";
+
+            // Create PreparedStatement
+            PreparedStatement ps = con.prepareStatement(query);
+
+            // Set Values
+
+
+            System.out.println("Connection Closed Successfully!");
+
+        } catch (Exception e) {
+            e.printStackTrace();
         }
 
+        System.out.println("Now we are talking to DB");
     }
 }
