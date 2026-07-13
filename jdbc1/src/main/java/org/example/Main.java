@@ -3,6 +3,7 @@ package org.example;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
@@ -27,7 +28,28 @@ public class Main {
             PreparedStatement ps = con.prepareStatement(query);
 
             // Set Values
+            System.out.println("Enter Student Id:\nName:\nDomain: ");
+            Scanner sc= new Scanner(System.in);
+            int id= sc.nextInt();
+            sc.nextLine();
+            String name= sc.nextLine();
+            String domain= sc.nextLine();
+            ps.setInt(1, id);
+            ps.setString(2, name);
+            ps.setString(3,domain );
 
+            // Execute Query
+            int rows = ps.executeUpdate();
+
+            if (rows > 0) {
+                System.out.println("Data Inserted Successfully!");
+            } else {
+                System.out.println("Data Insertion Failed!");
+            }
+
+            // Close Resources
+            ps.close();
+            con.close();
 
             System.out.println("Connection Closed Successfully!");
 
@@ -35,6 +57,6 @@ public class Main {
             e.printStackTrace();
         }
 
-        System.out.println("Now we are talking to DB");
+
     }
 }
