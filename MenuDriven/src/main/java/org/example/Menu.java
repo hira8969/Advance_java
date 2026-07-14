@@ -1,47 +1,60 @@
 package org.example;
 
+import org.example.dao.StudentDao;
 import java.util.Scanner;
 
-public class Menu
-{
+public class Menu {
 
+    public static void main(String[] args) {
 
+        Scanner sc = new Scanner(System.in);
+        StudentDao dao = new StudentDao();
 
-    public static void add()
-    {
+        int choice;
 
-    }
-    public static void view()
-    {
+        do {
+            System.out.println("\n===== STUDENT MANAGEMENT SYSTEM =====");
+            System.out.println("1. Add Student");
+            System.out.println("2. View All Students");
+            System.out.println("3. Search Student");
+            System.out.println("4. Update Student");
+            System.out.println("5. Delete Student");
+            System.out.println("6. Exit");
 
-    }
-    public static void update()
-    {
+            System.out.print("Enter Choice : ");
+            choice = sc.nextInt();
 
-    }
-    public static void delete()
-    {
+            switch (choice) {
+                case 1:
+                    dao.addStudent();
+                    break;
 
-    }
-    public static void operation()
-    {
-        Scanner sc= new Scanner(System.in);
-        System.out.println("Enter Your choice \n1.Add data \n2.Read data \n3.Update data \n4.Delete data \n5.exit");
-        int choice= sc.nextInt();
-        switch (choice)
-        {
-            case 1: add();
-            break;
-            case 2: view();
-            break;
-            case 3: update();
-            break;
-            case 4: delete();
-            break;
-//            case 5: exit();
-//            break;
-            default:
-                System.out.println("plese enter valid choice between 1 to 4");
-        }
+                case 2:
+                    dao.viewStudents();
+                    break;
+
+                case 3:
+                    dao.searchStudent();
+                    break;
+
+                case 4:
+                    dao.updateStudent();
+                    break;
+
+                case 5:
+                    dao.deleteStudent();
+                    break;
+
+                case 6:
+                    System.out.println("Thank You...");
+                    break;
+
+                default:
+                    System.out.println("Invalid Choice!");
+            }
+
+        } while (choice != 6);
+
+        sc.close();
     }
 }

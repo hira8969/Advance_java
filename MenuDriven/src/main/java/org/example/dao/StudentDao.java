@@ -28,8 +28,7 @@ public class StudentDao {
             System.out.print("Enter Course : ");
             String course = sc.nextLine();
 
-            String query = "insert into student(id,name,course) values(?,?,?)";
-
+            String query = "insert into student_data(s_id,s_name,domain) values(?,?,?)";
             PreparedStatement ps = con.prepareStatement(query);
 
             ps.setInt(1, id);
@@ -55,7 +54,7 @@ public class StudentDao {
 
             Connection con = DBConnection.getConnection();
 
-            String query = "select * from student";
+            String query = "select * from student_data";
 
             Statement st = con.createStatement();
 
@@ -65,7 +64,10 @@ public class StudentDao {
 
             while(rs.next()) {
 
-                System.out.println(rs.getInt("id") + " | " + rs.getString("name") + " | " + rs.getString("course")
+                System.out.println(
+                        rs.getInt("s_id") + " | " +
+                                rs.getString("s_name") + " | " +
+                                rs.getString("domain")
                 );
             }
 
@@ -85,7 +87,7 @@ public class StudentDao {
             System.out.print("Enter Student Id : ");
             int id = sc.nextInt();
 
-            String query = "select * from student where id=?";
+            String query = "select * from student_data where s_id=?";
 
             PreparedStatement ps = con.prepareStatement(query);
 
@@ -95,10 +97,11 @@ public class StudentDao {
 
             if(rs.next()) {
 
-                System.out.println(rs.getInt("id") + " | " + rs.getString("name") + " | " +
-                        rs.getString("course")
+                System.out.println(
+                        rs.getInt("s_id") + " | " +
+                                rs.getString("s_name") + " | " +
+                                rs.getString("domain")
                 );
-
             } else {
                 System.out.println("Student Not Found");
             }
@@ -127,7 +130,7 @@ public class StudentDao {
             System.out.print("Enter New Course : ");
             String course = sc.nextLine();
 
-            String query = "update student set name=?, course=? where id=?";
+            String query = "update student_data set s_name=?, domain=? where s_id=?";
 
             PreparedStatement ps = con.prepareStatement(query);
 
@@ -159,7 +162,7 @@ public class StudentDao {
             System.out.print("Enter Student Id : ");
             int id = sc.nextInt();
 
-            String query = "delete from student where id=?";
+            String query = "delete from student_data where s_id=?";
 
             PreparedStatement ps = con.prepareStatement(query);
 
