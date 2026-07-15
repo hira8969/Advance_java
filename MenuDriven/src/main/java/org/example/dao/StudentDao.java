@@ -25,7 +25,7 @@ public class StudentDao {
             System.out.print("Enter Name : ");
             String name = sc.nextLine();
 
-            System.out.print("Enter Course : ");
+            System.out.print("Enter Domain : ");
             String course = sc.nextLine();
 
             String query = "insert into student_data(s_id,s_name,domain) values(?,?,?)";
